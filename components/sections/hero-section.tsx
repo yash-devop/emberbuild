@@ -1,14 +1,14 @@
-import Link from "next/link"
-import { IconArrowRight, IconPhone } from "@tabler/icons-react"
+import Link from "next/link";
+import { IconArrowRight, IconPhone } from "@tabler/icons-react";
 
-import { Container } from "@/components/layout/container"
-import { Button } from "@/components/ui/button"
-import { Eyebrow } from "@/components/ui/eyebrow"
-import { hero } from "@/constants/hero"
+import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
+import { Eyebrow } from "@/components/ui/eyebrow";
+import { hero } from "@/constants/hero";
 
 export function HeroSection() {
   return (
-    <section id="top" className="pt-10 pb-16 sm:pt-14 lg:pb-24">
+    <section id="top" className="mt-24 pb-24 sm:pt-14 lg:pb-24s">
       <Container className="flex flex-col items-center gap-8 text-center">
         <Eyebrow>{hero.eyebrow}</Eyebrow>
 
@@ -40,5 +40,5 @@ export function HeroSection() {
         </div>
       </Container>
     </section>
-  )
+  );
 }
