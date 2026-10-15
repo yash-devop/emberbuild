@@ -35,10 +35,9 @@ export function ShowcaseBand() {
         className="object-cover opacity-90"
         loading="eager"
       />
-      <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
 
       <div className="relative flex flex-col items-center px-5 pt-0 pb-16 sm:px-8 lg:pb-24">
-        <div className="relative flex items-center gap-2 rounded-b-3xl bg-white px-3 py-3 shadow-sm">
+        <div className="relative -mt-14 flex items-center gap-1 rounded-full sm:rounded-b-3xl bg-white px-2 py-2 shadow-sm sm:mt-0 sm:gap-2 sm:px-3 sm:py-3">
           {showcaseTabs.map((tab) => {
             const selected = tab.label === active;
             return (
@@ -48,8 +47,8 @@ export function ShowcaseBand() {
                 aria-pressed={selected}
                 onClick={() => setActive(tab.label)}
                 className={cn(
-                  "rounded-xl px-5 py-2 text-sm font-medium text-black transition-colors",
-                  selected ? "bg-[#F2F2F2]" : "hover:bg-[#F7F7F7]",
+                  "rounded-xl px-4 py-1.5 text-xs font-medium text-black transition-colors sm:px-5 sm:py-2 sm:text-sm",
+                  selected ? "bg-neutral-200" : "hover:bg-[#F7F7F7]",
                 )}
               >
                 {tab.label}
