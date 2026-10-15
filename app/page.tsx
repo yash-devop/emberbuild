@@ -1,19 +1,31 @@
-import { ElementSelector } from "@/components/element-selector";
+import { SiteFooter } from "@/components/layout/site-footer"
+import { SiteHeader } from "@/components/layout/site-header"
+import { CapabilitiesSection } from "@/components/sections/capabilities-section"
+import { CtaSection } from "@/components/sections/cta-section"
+import { DevicesSection } from "@/components/sections/devices-section"
+import { FaqSection } from "@/components/sections/faq-section"
+import { HeroSection } from "@/components/sections/hero-section"
+import { PricingSection } from "@/components/sections/pricing-section"
+import { ProcessSection } from "@/components/sections/process-section"
+import { ShowcaseBand } from "@/components/sections/showcase-band"
+import { WorkSection } from "@/components/sections/work-section"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-16 bg-background p-8">
-      <ElementSelector animate>
-        <div className="flex h-40 w-64 items-center justify-center rounded-lg bg-secondary text-sm font-medium text-muted-foreground">
-          Selected element
-        </div>
-      </ElementSelector>
-
-      <ElementSelector>
-        <div className="flex h-24 w-48 items-center justify-center rounded-lg bg-secondary text-sm font-medium text-muted-foreground">
-          Static element
-        </div>
-      </ElementSelector>
-    </main>
-  );
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <SiteHeader />
+      <main className="flex-1">
+        <HeroSection />
+        <ShowcaseBand />
+        <ProcessSection />
+        <WorkSection />
+        <CapabilitiesSection />
+        <DevicesSection />
+        <PricingSection />
+        <FaqSection />
+        <CtaSection />
+      </main>
+      <SiteFooter />
+    </div>
+  )
 }
