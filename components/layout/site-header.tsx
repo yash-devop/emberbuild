@@ -26,6 +26,14 @@ export function SiteHeader() {
 
   return (
     <header className="pointer-events-none sticky top-4 z-50 px-5 sm:px-8 lg:top-6">
+      <div
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={cn(
+          "fixed inset-0 bg-black/40 backdrop-blur-sm transition-[opacity,visibility] duration-200 ease-out motion-reduce:transition-none md:hidden",
+          open ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0",
+        )}
+      />
       <nav
         aria-label="Primary"
         className={cn(
