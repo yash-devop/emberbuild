@@ -21,8 +21,11 @@ export type ComparisonRow = {
 
 export const pricing = {
   eyebrow: "Pricing",
-  heading:
-    "Straightforward, one-time pricing that works for you and your business.",
+  heading: {
+    lead: "Straightforward,",
+    highlight: "one-time pricing",
+    trail: "that works for you and your business.",
+  },
   plans: [
     {
       name: "Starter Plan",
