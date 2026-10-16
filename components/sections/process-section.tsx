@@ -210,7 +210,7 @@ export function ProcessSection() {
                         {step.title}
                       </span>
                     </div>
-                    <AnimatePresence mode="wait" initial={false}>
+                    <AnimatePresence initial={false}>
                       {isActive ? (
                         <motion.div
                           key={`content-${index}`}
@@ -265,8 +265,8 @@ export function ProcessSection() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.25 }}
           >
-            <div ref={imageRef} className="relative overflow-hidden ">
-              <AnimatePresence mode="wait">
+            <div ref={imageRef} className="relative aspect-[657/414] w-full">
+              <AnimatePresence initial={false}>
                 <motion.div
                   key={activeIndex}
                   variants={
@@ -277,7 +277,7 @@ export function ProcessSection() {
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  className="bg-red-400 rounded-md"
+                  className="absolute inset-0 rounded-md"
                 >
                   <Image
                     src={active.image}
@@ -285,7 +285,7 @@ export function ProcessSection() {
                     width={657}
                     height={414}
                     sizes="(min-width: 1024px) 560px, 100vw"
-                    className="h-auto w-full border border-[#D4D4D4] rounded-md"
+                    className="h-full w-full border border-[#D4D4D4] rounded-md object-cover"
                   />
                 </motion.div>
               </AnimatePresence>
