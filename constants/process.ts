@@ -1,19 +1,22 @@
 export type ProcessStep = {
-  title: string
-  description: string | null
-  image: string
-  imageAlt: string
-}
+  title: string;
+  description: string | null;
+  image: string;
+  imageAlt: string;
+};
 
 export const process = {
   eyebrow: "How it works",
-  heading: "Good work starts with understanding what matters to you.",
+  heading: {
+    lead: "Good work starts with understanding",
+    highlight: "what matters to you.",
+  },
   autoRotateMs: 4000,
   steps: [
     {
       title: "Discover",
       description:
-        "Every business has a different story, different challenges, and a different idea of success. We take the time to understand yours, turn it into a clear direction, and bring it to life through thoughtful design and purposeful execution.",
+        "Every business has a unique story and vision. We understand yours, shape the right direction, and bring it to life with thoughtful design.",
       image: "/images/how-it-works/discovery.png",
       imageAlt: "Discovery phase - understanding your goals and strategy",
     },
@@ -39,4 +42,4 @@ export const process = {
       imageAlt: "Launch and hand-over phase",
     },
   ] satisfies ProcessStep[],
-} as const
+} as const;
