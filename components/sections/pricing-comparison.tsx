@@ -1,6 +1,4 @@
-import { IconCheck } from "@tabler/icons-react"
-
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import {
   Table,
   TableBody,
@@ -8,28 +6,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { pricing, type ComparisonCell } from "@/constants/pricing"
+} from "@/components/ui/table";
+import { CheckBadge } from "@/components/ui/check-badge";
+import { pricing, type ComparisonCell } from "@/constants/pricing";
 
 function ComparisonValue({ value }: { value: ComparisonCell }) {
   if (value === true) {
-    return (
-      <span className="mx-auto grid size-[22px] place-items-center rounded-md bg-primary text-white">
-        <IconCheck className="size-3.5" aria-hidden="true" />
-      </span>
-    )
+    return <CheckBadge variant="table" size="sm" className="mx-auto" />;
   }
 
   return (
     <span
       className={cn(
         "text-base",
-        value === "-" ? "text-[#181818]" : "text-black"
+        value === "-" ? "text-[#181818]" : "text-black",
       )}
     >
       {value}
     </span>
-  )
+  );
 }
 
 export function PricingComparison() {
@@ -48,7 +43,7 @@ export function PricingComparison() {
                   "h-16 px-6 text-center text-base font-medium",
                   index === pricing.comparison.columns.length - 1
                     ? "bg-primary text-white"
-                    : "bg-[#E8E8E8] text-[#464646]"
+                    : "bg-[#E8E8E8] text-[#464646]",
                 )}
               >
                 {column}
@@ -73,5 +68,5 @@ export function PricingComparison() {
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }
