@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -5,11 +7,15 @@ import { cn } from "@/lib/utils";
 type BrowserMockupProps = {
   className?: string;
   imageClassName?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 };
 
 export function BrowserMockup({
   className,
   imageClassName,
+  imageSrc = "/images/abstract-bg.webp",
+  imageAlt = "",
 }: BrowserMockupProps) {
   return (
     <div
@@ -26,8 +32,8 @@ export function BrowserMockup({
       </div>
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
         <Image
-          src="/images/abstract-bg.webp"
-          alt=""
+          src={imageSrc}
+          alt={imageAlt}
           fill
           sizes="(min-width: 1024px) 560px, 100vw"
           className={cn("object-cover", imageClassName)}

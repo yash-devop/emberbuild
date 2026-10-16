@@ -1,5 +1,4 @@
 "use client";
-import type { ComponentProps } from "react";
 import { motion, type HTMLMotionProps, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
