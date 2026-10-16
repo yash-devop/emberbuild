@@ -8,6 +8,7 @@ import { Wordmark } from "@/components/layout/wordmark";
 import { Button } from "@/components/ui/button";
 import { headerCta, navLinks } from "@/constants/nav";
 import { cn } from "@/lib/utils";
+import { darkSurface } from "@/lib/styles";
 import { useMediaQuery } from "react-responsive";
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,8 @@ export function SiteHeader() {
       <nav
         aria-label="Primary"
         className={cn(
-          "pointer-events-auto relative mx-auto flex w-full max-w-150 flex-col text-white bg-linear-180 from-neutral-700 to-black border border-[color-mix(in_oklch,#fff,black_80%)] shadow-[inset_0_1px_0_0_rgb(255_255_255/0.115)]",
+          "pointer-events-auto relative mx-auto flex w-full max-w-150 flex-col text-white",
+          darkSurface,
           open && isTabletOrMobile
             ? "rounded-t-3xl border-none"
             : "rounded-full",
