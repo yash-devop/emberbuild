@@ -27,7 +27,7 @@ const BORDER_LINES = [
 const DRAW_X = "animate-[selector-draw-x_150ms_var(--ease-out)_both]"
 const DRAW_Y = "animate-[selector-draw-y_150ms_var(--ease-out)_both]"
 
-type ElementSelectorProps = ComponentProps<"div"> & {
+type ElementSelectorProps = ComponentProps<"span"> & {
   animate?: boolean
   handleClassName?: string
 }
@@ -40,7 +40,7 @@ export function ElementSelector({
   ...props
 }: ElementSelectorProps) {
   return (
-    <div
+    <span
       data-slot="element-selector"
       className={cn("relative inline-block text-[#0D99FF]", className)}
       {...props}
@@ -78,6 +78,6 @@ export function ElementSelector({
           }
         />
       ))}
-    </div>
+    </span>
   )
 }

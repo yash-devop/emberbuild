@@ -1,19 +1,22 @@
-import Image from "next/image"
+import Image from "next/image";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 type BrowserMockupProps = {
-  className?: string
-  imageClassName?: string
-}
+  className?: string;
+  imageClassName?: string;
+};
 
-export function BrowserMockup({ className, imageClassName }: BrowserMockupProps) {
+export function BrowserMockup({
+  className,
+  imageClassName,
+}: BrowserMockupProps) {
   return (
     <div
       data-slot="browser-mockup"
       className={cn(
         "rounded-2xl border border-border bg-white p-3 shadow-sm",
-        className
+        className,
       )}
     >
       <div className="mb-3 flex items-center gap-1.5 px-1">
@@ -34,5 +37,5 @@ export function BrowserMockup({ className, imageClassName }: BrowserMockupProps)
         </span>
       </div>
     </div>
-  )
+  );
 }

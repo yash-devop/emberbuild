@@ -1,7 +1,10 @@
 export const hero = {
   eyebrow: "Strategy meets craft",
-  heading:
-    "We design and build websites that help your business stand out.",
+  heading: {
+    lead: "We",
+    highlight: "design and build",
+    trail: "websites that help your business stand out.",
+  },
   description:
     "Thoughtfully designed, professionally built websites for growing businesses. Work directly with the person building your site, with clear deliverables and website packages starting at ₹20,000.",
   primaryCta: {
