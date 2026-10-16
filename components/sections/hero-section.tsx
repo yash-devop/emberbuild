@@ -11,40 +11,16 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { ElementSelector } from "@/components/element-selector";
 import { hero } from "@/constants/hero";
 import { cn } from "@/lib/utils";
-
-const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
-
-const WORD_STAGGER = 0.05;
-const WORD_DURATION = 0.55;
-const WORD_BLUR = 8;
-const WORD_Y = -14;
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: WORD_STAGGER, delayChildren: 0.1 },
-  },
-};
-
-const reducedContainerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0 } },
-};
-
-const wordVariants = {
-  hidden: { opacity: 0, y: WORD_Y, filter: `blur(${WORD_BLUR}px)` },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: WORD_DURATION, ease: EASE_OUT },
-  },
-};
-
-const reducedWordVariants = {
-  hidden: { opacity: 1 },
-  visible: { opacity: 1 },
-};
+import {
+  blurScaleReducedVariants,
+  blurScaleVariants,
+} from "@/lib/motion/blur-scale";
+import {
+  staggeredWordReducedVariants,
+  staggeredWordVariants,
+  staggeredWordsContainerVariants,
+  staggeredWordsReducedContainerVariants,
+} from "@/lib/motion/staggered-words";
 
 function HeadingWord({
   children,
@@ -59,7 +35,9 @@ function HeadingWord({
 }) {
   return (
     <motion.span
-      variants={reduced ? reducedWordVariants : wordVariants}
+      variants={
+        reduced ? staggeredWordReducedVariants : staggeredWordVariants()
+      }
       onAnimationComplete={onComplete}
       className={cn("inline-block", className)}
     >
@@ -78,6 +56,7 @@ export function HeroSection() {
   const leadWords = hero.heading.lead.split(" ");
   const highlightWords = hero.heading.highlight.split(" ");
   const trailWords = hero.heading.trail.split(" ");
+  const descriptionWords = hero.description.split(" ");
 
   return (
     <section id="top" className="mt-20 pb-24 sm:pt-14">
@@ -85,7 +64,11 @@ export function HeroSection() {
         <Eyebrow>{hero.eyebrow}</Eyebrow>
 
         <motion.h1
-          variants={shouldReduceMotion ? reducedContainerVariants : containerVariants}
+          variants={
+            shouldReduceMotion
+              ? staggeredWordsReducedContainerVariants
+              : staggeredWordsContainerVariants()
+          }
           initial="hidden"
           animate="visible"
           className="max-w-[742px] text-4xl leading-[1.05] font-semibold tracking-title text-balance sm:text-5xl lg:text-[52px]"
@@ -94,8 +77,7 @@ export function HeroSection() {
             <HeadingWord key={`lead-${word}`} reduced={shouldReduceMotion}>
               {word}
             </HeadingWord>
-          ))}
-          {" "}
+          ))}{" "}
           <ElementSelector
             animate={selectorVisible}
             pending={!selectorVisible}
@@ -112,8 +94,7 @@ export function HeroSection() {
                 {index < highlightWords.length - 1 ? " " : null}
               </Fragment>
             ))}
-          </ElementSelector>
-          {" "}
+          </ElementSelector>{" "}
           {trailWords.map((word, index) => (
             <Fragment key={`trail-${index}-${word}`}>
               <HeadingWord
@@ -131,11 +112,35 @@ export function HeroSection() {
           ))}
         </motion.h1>
 
-        <p className="max-w-[830px] text-base text-description sm:text-lg">
-          {hero.description}
-        </p>
+        <motion.p
+          variants={
+            shouldReduceMotion
+              ? staggeredWordsReducedContainerVariants
+              : staggeredWordsContainerVariants()
+          }
+          initial="hidden"
+          animate="visible"
+          className="max-w-[830px] text-base text-description sm:text-lg"
+        >
+          {descriptionWords.map((word, index) => (
+            <Fragment key={`description-${index}-${word}`}>
+              <HeadingWord reduced={shouldReduceMotion}>{word}</HeadingWord>
+              {index < descriptionWords.length - 1 ? " " : null}
+            </Fragment>
+          ))}
+        </motion.p>
 
-        <div className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
+        <motion.div
+          variants={
+            shouldReduceMotion ? blurScaleReducedVariants : blurScaleVariants()
+          }
+          initial="hidden"
+          animate="visible"
+          transition={{
+            delay: 0.9,
+          }}
+          className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+        >
           <Button asChild size="lg" className="w-full rounded-full sm:w-auto">
             <Link href={hero.primaryCta.href}>
               <IconPhone className="size-4" aria-hidden="true" />
@@ -156,7 +161,7 @@ export function HeroSection() {
               />
             </Link>
           </Button>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
