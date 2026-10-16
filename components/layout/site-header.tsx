@@ -30,18 +30,22 @@ export function SiteHeader() {
         aria-hidden="true"
         onClick={() => setOpen(false)}
         className={cn(
-          "fixed inset-0 bg-black/40 backdrop-blur-sm transition-[opacity,visibility] duration-200 ease-out motion-reduce:transition-none md:hidden",
-          open ? "pointer-events-auto visible opacity-100" : "pointer-events-none invisible opacity-0",
+          "fixed inset-0 bg-black/40 backdrop-blur-sm transition-[opacity,visibility] duration-400 ease-out motion-reduce:transition-none md:hidden",
+          open
+            ? "pointer-events-auto visible opacity-100"
+            : "pointer-events-none invisible opacity-0",
         )}
       />
       <nav
         aria-label="Primary"
         className={cn(
-          "pointer-events-auto relative mx-auto flex w-full max-w-[600px] flex-col bg-black text-white shadow-lg shadow-black/5",
-          open && isTabletOrMobile ? "rounded-t-3xl" : "rounded-full",
+          "pointer-events-auto relative mx-auto flex w-full max-w-150 flex-col text-white bg-linear-180 from-neutral-700 to-black border border-[color-mix(in_oklch,#fff,black_80%)] shadow-[inset_0_1px_0_0_rgb(255_255_255/0.115)]",
+          open && isTabletOrMobile
+            ? "rounded-t-3xl border-none"
+            : "rounded-full",
         )}
       >
-        <div className="flex items-center justify-between gap-4 py-3 pr-3 pl-5">
+        <div className="flex items-center justify-between gap-4 py-1.5 sm:py-2.5 pr-3 pl-5">
           <Link href="#top" aria-label="Emberbuild — home">
             <Wordmark />
           </Link>
@@ -88,8 +92,8 @@ export function SiteHeader() {
         <div
           id="mobile-nav"
           className={cn(
-            "absolute left-0 top-full w-full overflow-hidden rounded-b-3xl bg-black md:hidden",
-            open ? "block" : "hidden",
+            "absolute left-0 top-full w-full overflow-hidden rounded-b-3xl bg-black md:hidden border-x border-[color-mix(in_oklch,#fff,black_80%)]",
+            open ? "block " : "hidden",
           )}
         >
           <ul className="flex flex-col gap-1 px-3 pb-3">
