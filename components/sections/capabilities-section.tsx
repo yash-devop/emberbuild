@@ -1,12 +1,12 @@
-import { Container } from "@/components/layout/container"
-import { CapabilityTile } from "@/components/sections/capability-tile"
-import { capabilities } from "@/constants/capabilities"
+import { Container } from "@/components/layout/container";
+import { CapabilityTile } from "@/components/sections/capability-tile";
+import { capabilities } from "@/constants/capabilities";
 
 export function CapabilitiesSection() {
   return (
     <section id="services" className="py-20 lg:py-28">
-      <Container className="grid gap-6 lg:grid-cols-2 lg:gap-8">
-        <div className="flex flex-col justify-between gap-10 rounded-2xl bg-neutral-100 p-8 lg:p-10">
+      <Container className="grid lg:grid-cols-2">
+        <div className="flex flex-col justify-between gap-10 p-8 lg:p-10 border border-r-0 border-[#c8c8c8]">
           <span className="text-sm font-semibold tracking-[0.08em] text-primary uppercase">
             {capabilities.eyebrow}
           </span>
@@ -15,7 +15,7 @@ export function CapabilitiesSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2">
           {capabilities.services.map((service) => (
             <CapabilityTile
               key={service.label}
@@ -26,5 +26,5 @@ export function CapabilitiesSection() {
         </div>
       </Container>
     </section>
-  )
+  );
 }
