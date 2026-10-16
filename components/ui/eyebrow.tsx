@@ -1,22 +1,45 @@
+"use client";
 import type { ComponentProps } from "react";
-
+import { motion, type HTMLMotionProps } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export function Eyebrow({
   className,
   children,
+  animate = true,
   ...props
-}: ComponentProps<"span">) {
+}: HTMLMotionProps<"span"> & {
+  animate?: boolean;
+}) {
   return (
-    <span
+    <motion.span
       data-slot="eyebrow"
+      initial={
+        animate && {
+          opacity: 0,
+          scale: 0.94,
+          y: -10,
+          filter: "blur(3px)",
+        }
+      }
+      animate={
+        animate && {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          filter: "blur(0px)",
+        }
+      }
+      transition={{
+        delay: 1.5,
+      }}
       className={cn(
-        "inline-flex items-center rounded-full bg-eyebrow px-3 pt-px h-6 text-[11px] leading-none tracking-[-0.5px] text-black uppercase font-medium font-mono border border-[#7C7C7C] select-none cursor-default w-fit",
+        "inline-flex items-center rounded-full bg-eyebrow px-3 pt-px h-6 text-[11px] leading-none tracking-[-0.5px] text-black uppercase font-medium font-mono border border-[#7C7C7C] select-none cursor-default w-fit will-change-transform",
         className,
       )}
       {...props}
     >
       {children}
-    </span>
+    </motion.span>
   );
 }

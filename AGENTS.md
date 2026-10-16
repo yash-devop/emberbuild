@@ -107,6 +107,7 @@ public/              Static assets (images, icons, fonts)
 - Prioritize clarity, bold brand presence, and strong visual hierarchy (agency context)
 - Reuse the shadcn design tokens in `app/globals.css` (`bg-primary`, `text-muted-foreground`, etc.) instead of hard-coded colors so theming stays consistent
 - Use subtle, professional animations (respect prefers-reduced-motion)
+- **Always define motion variants (object form) for motion.dev animations, even for small/simple ones.** Favor `variants` + `initial` + `animate` over inline `initial`/`animate` objects duplicated or mixed. Define `containerVariants`/`itemVariants` as appropriate and handle reduced motion with separate variants.
 - Keep bundle size reasonable; avoid unnecessary deps
 - Lazy-load non-critical assets where sensible
 - Ensure no layout shift (CLS)
