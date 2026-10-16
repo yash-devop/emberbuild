@@ -1,16 +1,20 @@
-import Link from "next/link"
+import Link from "next/link";
 
-import { Container } from "@/components/layout/container"
-import { PortfolioPreviewCard } from "@/components/sections/portfolio-preview-card"
-import { SectionHeading } from "@/components/sections/section-heading"
-import { work } from "@/constants/work"
+import { Container } from "@/components/layout/container";
+import { PortfolioPreviewCard } from "@/components/sections/portfolio-preview-card";
+import { HighlightHeading } from "@/components/sections/highlight-heading";
+import { work } from "@/constants/work";
 
 export function WorkSection() {
   return (
     <section id="work" className="py-20 lg:py-28">
       <Container className="flex flex-col gap-12">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading eyebrow={work.eyebrow} title={work.heading} />
+          <HighlightHeading
+            eyebrow={work.eyebrow}
+            lead={work.heading.lead}
+            highlight={work.heading.highlight}
+          />
           <Link
             href={work.cta.href}
             target="_blank"
@@ -33,5 +37,5 @@ export function WorkSection() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

@@ -6,7 +6,10 @@ export type WorkProject = {
 
 export const work = {
   eyebrow: "Our work",
-  heading: "A closer look at what we create.",
+  heading: {
+    lead: "A closer look at what",
+    highlight: "we create.",
+  },
   cta: {
     label: "View more",
     href: "https://portfolio.emberbuild.in",

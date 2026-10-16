@@ -1,6 +1,9 @@
 export const devices = {
   eyebrow: "Our work",
-  heading: "Optimized for every screen size.",
+  heading: {
+    highlight: "Optimized",
+    trail: "for every screen size.",
+  },
   description:
     "We build responsive by default. Your site, app, or product looks and performs great on any device.",
   stat: {

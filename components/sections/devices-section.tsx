@@ -1,21 +1,22 @@
-import Image from "next/image"
-import Link from "next/link"
-import { IconBolt } from "@tabler/icons-react"
+import Image from "next/image";
+import Link from "next/link";
+import { IconBolt } from "@tabler/icons-react";
 
-import { Container } from "@/components/layout/container"
-import { SectionHeading } from "@/components/sections/section-heading"
-import { CurvedArrow } from "@/components/icons/curved-arrow"
-import { Button } from "@/components/ui/button"
-import { devices } from "@/constants/devices"
+import { Container } from "@/components/layout/container";
+import { HighlightHeading } from "@/components/sections/highlight-heading";
+import { CurvedArrow } from "@/components/icons/curved-arrow";
+import { Button } from "@/components/ui/button";
+import { devices } from "@/constants/devices";
 
 export function DevicesSection() {
   return (
     <section id="devices" className="py-20 lg:py-28">
-      <Container className="flex flex-col gap-12">
+      <Container className="flex flex-col gap-12 sm:gap-6 md:gap-12">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          <SectionHeading
+          <HighlightHeading
             eyebrow={devices.eyebrow}
-            title={devices.heading}
+            highlight={devices.heading.highlight}
+            trail={devices.heading.trail}
             description={devices.description}
             titleClassName="max-w-[658px]"
             className="max-w-[830px]"
@@ -31,7 +32,7 @@ export function DevicesSection() {
             <p className="text-sm text-description">
               {devices.stat.description}
             </p>
-            <Button asChild size="lg" className="w-full rounded-lg">
+            <Button asChild size="lg" className="w-full rounded-full">
               <Link href={devices.stat.cta.href}>
                 <IconBolt className="size-5" aria-hidden="true" />
                 {devices.stat.cta.label}
@@ -43,7 +44,7 @@ export function DevicesSection() {
         <div className="grid grid-cols-2 items-end gap-4 sm:grid-cols-4">
           <div className="relative col-span-2 aspect-[436/254] overflow-hidden rounded-2xl border border-border bg-neutral-100">
             <Image
-              src="/images/abstract-bg.webp"
+              src="/images/optimized-screen-desktop.webp"
               alt="Desktop preview"
               fill
               sizes="(min-width: 640px) 40vw, 90vw"
@@ -52,7 +53,7 @@ export function DevicesSection() {
           </div>
           <div className="relative aspect-[330/441] overflow-hidden rounded-2xl border border-border bg-neutral-100">
             <Image
-              src="/images/abstract-bg.webp"
+              src="/images/optimized-screen-tablet.webp"
               alt="Tablet preview"
               fill
               sizes="(min-width: 640px) 20vw, 45vw"
@@ -61,7 +62,7 @@ export function DevicesSection() {
           </div>
           <div className="relative aspect-[142/307] overflow-hidden rounded-2xl border border-border bg-neutral-100">
             <Image
-              src="/images/abstract-bg.webp"
+              src="/images/optimized-screen-mobile.webp"
               alt="Mobile preview"
               fill
               sizes="(min-width: 640px) 12vw, 45vw"
@@ -71,5 +72,5 @@ export function DevicesSection() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

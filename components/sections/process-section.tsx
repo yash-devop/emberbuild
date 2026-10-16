@@ -3,15 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Confetti from "react-confetti";
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  useReducedMotion,
-} from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
-import { SectionHeading } from "@/components/sections/section-heading";
-import { ElementSelector } from "@/components/element-selector";
+import { HighlightHeading } from "@/components/sections/highlight-heading";
 import { UserPresence } from "@/components/user-presence";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
@@ -108,8 +102,6 @@ export function ProcessSection() {
   const [progressKey, setProgressKey] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pausedRef = useRef(false);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const headingInView = useInView(headingRef, { once: true, amount: 0.9 });
 
   const steps = process.steps;
   const active = steps[activeIndex];
@@ -161,25 +153,12 @@ export function ProcessSection() {
   return (
     <section id="process" className="relative py-20 lg:py-28">
       <Container className="flex flex-col gap-12 lg:gap-16">
-        <div ref={headingRef} className="relative">
-          <SectionHeading
-            eyebrow={process.eyebrow}
-            title={
-              <>
-                {process.heading.lead}{" "}
-                <ElementSelector
-                  animate={headingInView}
-                  className="mx-0.5 px-1 py-0.5 sm:px-1.5"
-                >
-                  <span className="text-foreground">
-                    {process.heading.highlight}
-                  </span>
-                </ElementSelector>
-              </>
-            }
-            titleClassName="max-w-[830px]"
-          />
-        </div>
+        <HighlightHeading
+          eyebrow={process.eyebrow}
+          lead={process.heading.lead}
+          highlight={process.heading.highlight}
+          titleClassName="max-w-[830px]"
+        />
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16 mt-4">
           <div
             className="w-full max-w-[485px]"
