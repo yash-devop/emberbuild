@@ -49,3 +49,37 @@ export function blurScaleTransition({
     ease: EASE_OUT,
   };
 }
+
+type BlurScaleItemOptions = BlurScaleVariantsOptions &
+  BlurScaleTransitionOptions;
+
+export function blurScaleItemVariants(options: BlurScaleItemOptions = {}): Variants {
+  const { hidden, visible } = blurScaleVariants(options);
+
+  return {
+    hidden,
+    visible: { ...visible, transition: blurScaleTransition(options) },
+  };
+}
+
+type BlurScaleContainerOptions = {
+  stagger?: number;
+  delay?: number;
+};
+
+export function blurScaleContainerVariants({
+  stagger = 0.12,
+  delay = 0.1,
+}: BlurScaleContainerOptions = {}): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: stagger, delayChildren: delay },
+    },
+  };
+}
+
+export const blurScaleReducedContainerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0 } },
+};
