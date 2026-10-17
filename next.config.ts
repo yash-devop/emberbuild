@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  allowedDevOrigins: ["*.srv.us"],
+  allowedDevOrigins: ["*.srv.us"], // for local tunnelling
   turbopack: {
     rules: {
       "*.css": {
@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  output: "export",
+  images: {
+    unoptimized: true,
   },
 };
 
