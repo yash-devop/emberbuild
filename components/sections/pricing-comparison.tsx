@@ -29,7 +29,7 @@ function ComparisonValue({ value }: { value: ComparisonCell }) {
 
 export function PricingComparison() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border lg:rounded-none lg:border-0">
+    <div className="overflow-hidden border border-border lg:border-0">
       <Table className="min-w-[760px]">
         <TableHeader>
           <TableRow className="border-none hover:bg-transparent">
