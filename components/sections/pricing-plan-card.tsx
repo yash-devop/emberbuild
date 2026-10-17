@@ -55,7 +55,7 @@ export function PricingPlanCard({ plan }: { plan: PricingPlan }) {
       <Link
         href={plan.cta.href}
         className={cn(
-          "flex h-14 items-center justify-center px-6 text-center text-sm font-normal tracking-[0.06em] uppercase transition-colors border lg:border-t lg:first:border-l lg:last:border-r border-[#c8c8c8] font-mono",
+          "mt-8 flex h-14 items-center justify-center px-6 text-center text-sm font-normal tracking-[0.06em] uppercase transition-colors border lg:border-t lg:first:border-l lg:last:border-r border-[#c8c8c8] font-mono",
           highlighted
             ? "bg-primary text-white hover:bg-primary/90"
             : "bg-black text-white hover:bg-neutral-800",
