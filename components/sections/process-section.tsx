@@ -61,32 +61,6 @@ const reducedContentVariants = {
   exit: { opacity: 0, transition: { duration: 0.12 } },
 };
 
-const accordionVariants = {
-  initial: { height: 0, opacity: 0 },
-  animate: {
-    height: "auto",
-    opacity: 1,
-    transition: {
-      height: { duration: 0.4, ease: EASE_OUT },
-      opacity: { duration: 0.3 },
-    },
-  },
-  exit: {
-    height: 0,
-    opacity: 0,
-    transition: {
-      height: { duration: 0.4, ease: EASE_OUT },
-      opacity: { duration: 0.2 },
-    },
-  },
-};
-
-const reducedAccordionVariants = {
-  initial: { height: 0, opacity: 0 },
-  animate: { height: "auto", opacity: 1, transition: { duration: 0.15 } },
-  exit: { height: 0, opacity: 0, transition: { duration: 0.15 } },
-};
-
 const progressVariants = {
   initial: { scaleX: 0 },
   animate: (duration: number) => ({
@@ -162,12 +136,6 @@ export function ProcessSection() {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16 mt-4">
           <div
             className="w-full max-w-[485px]"
-            onMouseEnter={() => {
-              pausedRef.current = true;
-            }}
-            onMouseLeave={() => {
-              pausedRef.current = false;
-            }}
             onFocusCapture={() => {
               pausedRef.current = true;
             }}
@@ -188,13 +156,14 @@ export function ProcessSection() {
                 return (
                   <motion.button
                     key={step.title}
+                    layout={shouldReduceMotion ? false : "position"}
                     variants={
                       shouldReduceMotion ? reducedTabVariants : tabItemVariants
                     }
                     type="button"
-                    onClick={() => goToStep(index)}
+                    onClick={() => activeIndex !== index && goToStep(index)}
                     className={cn(
-                      "group relative flex flex-col overflow-hidden py-4 text-left h-fit transition-all duration-200 will-change-transform",
+                      "group relative flex flex-col overflow-hidden py-4 text-left h-fit transition-colors duration-200 will-change-transform",
                     )}
                     aria-pressed={isActive}
                   >
@@ -210,36 +179,37 @@ export function ProcessSection() {
                         {step.title}
                       </span>
                     </div>
-                    <AnimatePresence initial={false}>
-                      {isActive ? (
-                        <motion.div
+                    {isActive ? (
+                      <div className="grid pt-2 pb-4">
+                        <p
+                          aria-hidden="true"
+                          className="invisible col-start-1 row-start-1 text-sm text-description"
+                        >
+                          {longestDescription}
+                        </p>
+                        <motion.p
                           key={`content-${index}`}
                           variants={
                             shouldReduceMotion
-                              ? reducedAccordionVariants
-                              : accordionVariants
+                              ? reducedContentVariants
+                              : contentVariants
                           }
                           initial="initial"
                           animate="animate"
-                          exit="exit"
-                          className="overflow-hidden"
+                          className="col-start-1 row-start-1 text-sm text-description"
                         >
-                          <div className="grid pt-2 pb-4">
-                            <p
-                              aria-hidden="true"
-                              className="invisible col-start-1 row-start-1 text-sm text-description"
-                            >
-                              {longestDescription}
-                            </p>
-                            <p className="col-start-1 row-start-1 text-sm text-description">
-                              {step.description}
-                            </p>
-                          </div>
-                        </motion.div>
-                      ) : null}
-                    </AnimatePresence>
+                          {step.description}
+                        </motion.p>
+                      </div>
+                    ) : null}
                     {isActive ? (
-                      <div
+                      <motion.div
+                        initial={{}}
+                        exit={{
+                          opacity: 0,
+                          y: 10,
+                          filter: "blur(30px)",
+                        }}
                         aria-hidden="true"
                         className="pointer-events-none absolute bottom-0 left-0 h-[3px] w-full origin-left will-change-transform"
                       >
@@ -251,7 +221,7 @@ export function ProcessSection() {
                           animate="animate"
                           className="h-full w-full origin-left bg-foreground will-change-transform"
                         />
-                      </div>
+                      </motion.div>
                     ) : null}
                   </motion.button>
                 );
@@ -320,7 +290,7 @@ export function ProcessSection() {
                   <UserPresence
                     name="Client"
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-20 bottom-52 z-10"
+                    className="pointer-events-none absolute right-20 top-24 z-10"
                   />
                 </motion.div>
               ) : null}
