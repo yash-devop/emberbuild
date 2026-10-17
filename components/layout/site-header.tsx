@@ -48,7 +48,7 @@ export function SiteHeader() {
         )}
       >
         <div className="flex items-center justify-between gap-4 py-1.5 sm:py-2.5 pr-3 pl-5">
-          <Link href="#top" aria-label="Emberbuild — home">
+          <Link href="#top" aria-label="Emberbuild - home">
             <Wordmark />
           </Link>
 
