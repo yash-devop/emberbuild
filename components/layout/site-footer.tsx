@@ -36,7 +36,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={social.label}
-                    className="grid size-8 place-items-center text-charcoal transition-colors hover:text-primary"
+                    className="grid size-8 place-items-center text-charcoal transition-colors hover:text-neutral-500"
                   >
                     <SocialIconComponent
                       className="size-5"
@@ -47,7 +47,7 @@ export function SiteFooter() {
               })}
             </div>
           </div>
-          <p className="text-base text-black tracking-title">
+          <p className="text-base text-neutral-600 tracking-title">
             <Suspense fallback={`© ${footer.copyright}`}>
               <CopyrightLine />
             </Suspense>
