@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { IconCalendar, type Icon } from "@tabler/icons-react";
+import { IconArrowRight, IconCalendar, type Icon } from "@tabler/icons-react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 
 import { Container } from "@/components/layout/container";
@@ -93,7 +93,7 @@ export function CtaSection() {
                         asChild
                         size="lg"
                         className={cn(
-                          "w-fit rounded-full sm:w-auto",
+                          "w-fit rounded-full sm:w-auto ",
                           actionToneClasses[action.tone],
                         )}
                       >
@@ -106,6 +106,7 @@ export function CtaSection() {
                             <ActionIcon className="size-4" aria-hidden="true" />
                           ) : null}
                           {action.label}
+                          <IconArrowRight className="mt-0.5" />
                         </Link>
                       </Button>
                     </motion.div>

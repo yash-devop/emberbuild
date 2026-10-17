@@ -14,15 +14,10 @@ export const cta = {
   heading: "Your next big idea deserves a better digital presence.",
   actions: [
     {
-      label: "Book a call",
+      label: "Book a meeting with us ",
       href: "#contact",
       tone: "solid",
       icon: "calendar",
-    },
-    {
-      label: "View work",
-      href: "https://portfolio.emberbuild.in",
-      tone: "outline",
       external: true,
     },
   ] satisfies CtaAction[],
