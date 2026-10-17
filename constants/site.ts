@@ -19,3 +19,12 @@ export type Social = {
 export const socials: Social[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com", key: "linkedin" },
 ]
+
+const whatsappMessage =
+  "Hi EmberBuild! I'm interested in a website for my business. I'd like to discuss my requirements and pricing."
+
+export const whatsapp = {
+  phone: "917715097298",
+  message: whatsappMessage,
+  href: `https://wa.me/917715097298?text=${encodeURIComponent(whatsappMessage)}`,
+} as const
