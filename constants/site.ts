@@ -24,8 +24,14 @@ export const socials: Social[] = [
 const whatsappMessage =
   "Hi EmberBuild! I'm interested in a website for my business. I'd like to discuss my requirements and pricing."
 
+const whatsappPhone = "917715097298"
+
+export function whatsappLink(message: string) {
+  return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`
+}
+
 export const whatsapp = {
-  phone: "917715097298",
+  phone: whatsappPhone,
   message: whatsappMessage,
-  href: `https://wa.me/917715097298?text=${encodeURIComponent(whatsappMessage)}`,
+  href: whatsappLink(whatsappMessage),
 } as const

@@ -1,3 +1,5 @@
+import { whatsappLink } from "@/constants/site"
+
 export type PricingPlan = {
   name: string
   badge: string | null
@@ -33,7 +35,12 @@ export const pricing = {
       price: "₹12,000",
       cadence: "One-time payment",
       tagline: "For small businesses starting online",
-      cta: { label: "Start your plan", href: "#contact" },
+      cta: {
+        label: "Choose Starter",
+        href: whatsappLink(
+          "Hi Emberbuild ! I'm interested in build a website for my business and wanted the Starter plan (₹12,000). I'd like to discuss my requirements and pricing.",
+        ),
+      },
       features: [
         "Up to 3 pages",
         "Standard custom design & Mobile-responsive design",
@@ -52,7 +59,12 @@ export const pricing = {
       price: "₹24,000",
       cadence: "One-time payment",
       tagline: "Businesses wanting a more complete website",
-      cta: { label: "Start your business plan", href: "#contact" },
+      cta: {
+        label: "Choose Business",
+        href: whatsappLink(
+          "Hi Emberbuild ! I'm interested in build a website for my business and wanted the Business plan (₹24,000). I'd like to discuss my requirements and pricing.",
+        ),
+      },
       features: [
         "Up to 5 custom-designed pages",
         "Premium custom UI/UX design & responsive design",
