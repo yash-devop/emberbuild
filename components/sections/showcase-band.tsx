@@ -104,7 +104,7 @@ export function ShowcaseBand() {
         fill
         sizes="100vw"
         className="object-cover opacity-70"
-        loading="eager"
+        fetchPriority="high"
       />
 
       <div className="relative flex flex-col items-center px-5 pt-0 pb-16 sm:px-8 lg:pb-24">
