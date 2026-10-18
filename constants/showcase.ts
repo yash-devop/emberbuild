@@ -3,10 +3,16 @@ export type ShowcaseTab = {
 };
 
 export const showcaseTabs: ShowcaseTab[] = [
-  { label: "Cafes" },
-  { label: "SaaS" },
-  { label: "Designs" },
-  { label: "Portfolio" },
+  { label: "Custom Design" },
+  { label: "Conversion Focused" },
+  { label: "Fast & Modern" },
+  { label: "Built to Grow" },
+  { label: "Websites From ₹12,000" },
+  { label: "Launch in 1–3 Weeks" },
+  { label: "Work Directly With the Builder" },
+  { label: "100% Custom, No Templates" },
+  { label: "Book a Strategy Call" },
+  { label: "Post-Launch Support Included" },
 ];
 
 export const showcasePreview = {
