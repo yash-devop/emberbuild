@@ -17,6 +17,11 @@ const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
 
 const CONFETTI_COLORS = ["#8570ff", "#9fef54", "#68fe9d", "#ffffff", "#111111"];
 
+const CONFETTI_EMITTERS = [
+  { x: 0, y: 1, velocityX: { min: 4, max: 15 } },
+  { x: 1, y: 1, velocityX: { min: -15, max: -4 } },
+] as const;
+
 const tabContainerVariants = {
   hidden: {},
   visible: {
@@ -260,23 +265,36 @@ export function ProcessSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {isLaunch && !shouldReduceMotion && imageSize.width > 0 ? (
-                <Confetti
-                  width={imageSize.width}
-                  height={imageSize.height}
-                  numberOfPieces={160}
-                  recycle={false}
-                  gravity={0.18}
-                  colors={CONFETTI_COLORS}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              ) : null}
+              {isLaunch && !shouldReduceMotion && imageSize.width > 0
+                ? CONFETTI_EMITTERS.map((emitter, index) => (
+                    <Confetti
+                      key={index}
+                      width={imageSize.width}
+                      height={imageSize.height}
+                      numberOfPieces={80}
+                      recycle={false}
+                      gravity={0.3}
+                      friction={0.985}
+                      tweenDuration={400}
+                      colors={CONFETTI_COLORS}
+                      confettiSource={{
+                        x: imageSize.width * emitter.x,
+                        y: imageSize.height * emitter.y,
+                        w: 0,
+                        h: 0,
+                      }}
+                      initialVelocityX={emitter.velocityX}
+                      initialVelocityY={{ min: -22, max: -9 }}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  ))
+                : null}
 
               {isLaunch && !shouldReduceMotion && imageSize.width > 0 ? (
                 <motion.div
