@@ -11,7 +11,6 @@ import { Wordmark } from "@/components/layout/wordmark";
 import { Button } from "@/components/ui/button";
 import { cta, type CtaActionIcon, type CtaActionTone } from "@/constants/cta";
 import { cn } from "@/lib/utils";
-import { darkSurface } from "@/lib/styles";
 import {
   blurScaleContainerVariants,
   blurScaleItemVariants,
@@ -20,7 +19,7 @@ import {
 } from "@/lib/motion/blur-scale";
 
 const actionToneClasses: Record<CtaActionTone, string> = {
-  solid: cn(darkSurface, "text-white hover:brightness-110"),
+  solid: "text-white hover:brightness-110",
   outline: "bg-white text-primary hover:bg-white/90",
 };
 
