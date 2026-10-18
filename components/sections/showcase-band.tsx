@@ -1,48 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  type Variants,
-} from "motion/react";
+import Autoplay from "embla-carousel-autoplay";
+import { useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 import { showcaseTabs, showcaseWorks } from "@/constants/showcase";
 import { Marquee } from "@/components/ui/marquee";
 import { buttonVariants } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
-const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
-const SLIDE_INTERVAL_MS = 1700;
-
-const slideVariants: Variants = {
-  initial: {
-    opacity: 0,
-    scale: 0.96,
-    filter: "blur(10px)",
-    transition: { duration: 0.5, ease: EASE_OUT },
-  },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, ease: EASE_OUT },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.96,
-    filter: "blur(10px)",
-    transition: { duration: 0.32, ease: EASE_OUT },
-  },
-};
-
-const slideVariantsReduced: Variants = {
-  initial: { opacity: 0, transition: { duration: 0.15 } },
-  animate: { opacity: 1, transition: { duration: 0.15 } },
-  exit: { opacity: 0, transition: { duration: 0.12 } },
-};
+const AUTOPLAY_DELAY_MS = 3600;
 
 function ConcaveMerge({
   side,
@@ -75,27 +51,42 @@ function ConcaveMerge({
 }
 
 export function ShowcaseBand() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-  const work = showcaseWorks[index];
-  const variants = shouldReduceMotion ? slideVariantsReduced : slideVariants;
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const [api, setApi] = useState<CarouselApi>();
+  const [thumbApi, setThumbApi] = useState<CarouselApi>();
+  const [selected, setSelected] = useState(0);
+
+  const [autoplay] = useState(() =>
+    Autoplay({
+      delay: AUTOPLAY_DELAY_MS,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    }),
+  );
+
+  const plugins = useMemo(
+    () => (shouldReduceMotion ? [] : [autoplay]),
+    [shouldReduceMotion, autoplay],
+  );
 
   useEffect(() => {
-    if (paused || shouldReduceMotion) return;
+    if (!api) return;
 
-    const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % showcaseWorks.length);
-    }, SLIDE_INTERVAL_MS);
+    const onSelect = () => {
+      const index = api.selectedScrollSnap();
+      setSelected(index);
+      thumbApi?.scrollTo(index);
+    };
 
-    return () => window.clearInterval(id);
-  }, [paused, shouldReduceMotion, index]);
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
 
-  useEffect(() => {
-    const next = showcaseWorks[(index + 1) % showcaseWorks.length];
-    const image = new window.Image();
-    image.src = next.src;
-  }, [index]);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api, thumbApi]);
 
   return (
     <section
@@ -113,7 +104,7 @@ export function ShowcaseBand() {
       />
 
       <div className="relative flex flex-col items-center px-5 pt-0 pb-16 sm:px-8 lg:pb-24">
-        <div className="relative -mt-14 w-[min(100%,34rem)] rounded-full bg-white p-2 shadow-sm sm:mt-0 sm:rounded-t-none sm:rounded-b-3xl sm:p-3">
+        <div className="relative -mt-14 w-[min(100%,34rem)] bg-white p-2 sm:shadow-sm sm:mt-0 sm:rounded-t-none sm:rounded-b-3xl sm:p-3">
           <Marquee gap={8} duration={40} fade={28}>
             {showcaseTabs.map((tab) => (
               <span
@@ -131,51 +122,64 @@ export function ShowcaseBand() {
           <ConcaveMerge side="right" />
         </div>
 
-        <div
-          className="relative mt-14 max-w-[1400px] aspect-[4/3] w-full overflow-hidden rounded-2xl sm:aspect-video sm:mt-16 lg:aspect-[16/9] xl:h-[720px]"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={() => setPaused(false)}
+        <Carousel
+          setApi={setApi}
+          opts={{ loop: true, align: "center" }}
+          plugins={plugins}
+          className="mt-14 max-w-[1400px] aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#F7F7F7] sm:aspect-video sm:mt-16 lg:aspect-[16/9] xl:h-[720px] [&>div]:h-full"
         >
-          <AnimatePresence>
-            <motion.div
-              key={work.src}
-              variants={variants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <Image
-                src={work.src}
-                alt={work.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, min(1400px, 100vw)"
-                className="object-contain"
-                priority={index === 0}
-              />
-            </motion.div>
-          </AnimatePresence>
-        </div>
+          <CarouselContent className="ml-0 h-full">
+            {showcaseWorks.map((work, index) => (
+              <CarouselItem key={work.src} className="h-full pl-0">
+                <div className="relative h-full w-full p-5 sm:p-10 lg:p-14">
+                  <Image
+                    src={work.src}
+                    alt={work.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, min(1400px, 100vw)"
+                    className="object-contain"
+                    priority={index === 0}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-3 size-10 border-0 bg-white text-[#202020] shadow-sm hover:bg-white hover:text-[#202020] sm:left-5 sm:size-[54px]" />
+          <CarouselNext className="right-3 size-10 border-0 bg-white text-[#202020] shadow-sm hover:bg-white hover:text-[#202020] sm:right-5 sm:size-[54px]" />
+        </Carousel>
 
-        <div className="mt-5 flex items-center gap-2">
-          {showcaseWorks.map((item, itemIndex) => (
-            <button
-              key={item.src}
-              type="button"
-              onClick={() => setIndex(itemIndex)}
-              aria-label={`Show ${item.alt}`}
-              aria-current={itemIndex === index ? "true" : undefined}
-              className={cn(
-                "h-2 rounded-full transition-[width,background-color] duration-200 ease-out motion-reduce:transition-none",
-                itemIndex === index
-                  ? "w-6 bg-white"
-                  : "w-2 bg-white/40 hover:bg-white/70",
-              )}
-            />
-          ))}
-        </div>
+        <Carousel
+          setApi={setThumbApi}
+          opts={{ align: "center", dragFree: true, containScroll: "keepSnaps" }}
+          className="mt-6 w-full max-w-[1400px]"
+        >
+          <CarouselContent className="items-center">
+            {showcaseWorks.map((work, index) => (
+              <CarouselItem key={work.src} className="basis-auto">
+                <button
+                  type="button"
+                  onClick={() => api?.scrollTo(index)}
+                  aria-label={`Show ${work.alt}`}
+                  aria-current={index === selected ? "true" : undefined}
+                  className={cn(
+                    "relative h-[58px] w-[94px] overflow-hidden rounded-lg transition-all duration-300 ease-out motion-reduce:transition-none sm:h-[76px] sm:w-[124px]",
+                    index === selected
+                      ? "ring-2 ring-white scale-105"
+                      : "opacity-60 hover:opacity-100",
+                  )}
+                >
+                  <Image
+                    src={work.src}
+                    alt=""
+                    fill
+                    sizes="124px"
+                    className="object-cover"
+                  />
+                </button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
