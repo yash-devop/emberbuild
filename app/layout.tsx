@@ -28,6 +28,10 @@ export const metadata: Metadata = {
       "msvalidate.01": "5501518F83AB8C0ABF1DF0F90A4A8E2F",
     },
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
