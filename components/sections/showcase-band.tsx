@@ -11,6 +11,8 @@ import {
 
 import { cn } from "@/lib/utils";
 import { showcaseTabs, showcaseWorks } from "@/constants/showcase";
+import { Marquee } from "@/components/ui/marquee";
+import { buttonVariants } from "@/components/ui/button";
 
 const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
 const SLIDE_INTERVAL_MS = 1700;
@@ -73,7 +75,6 @@ function ConcaveMerge({
 }
 
 export function ShowcaseBand() {
-  const [active, setActive] = useState(showcaseTabs[0].label);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -97,35 +98,35 @@ export function ShowcaseBand() {
   }, [index]);
 
   return (
-    <section aria-label="Selected work showcase" className="relative bg-black">
+    <section
+      id="work"
+      aria-label="Selected work showcase"
+      className="relative scroll-mt-24 bg-black"
+    >
       <Image
         src="/images/abstract-bg.webp"
         alt=""
         fill
         sizes="100vw"
-        className="object-cover opacity-70"
+        className="object-cover"
         fetchPriority="high"
       />
 
       <div className="relative flex flex-col items-center px-5 pt-0 pb-16 sm:px-8 lg:pb-24">
-        <div className="relative -mt-14 flex items-center gap-1 rounded-full sm:rounded-t-none sm:rounded-b-3xl bg-white px-2 py-2 shadow-sm sm:mt-0 sm:gap-2 sm:px-3 sm:py-3">
-          {showcaseTabs.map((tab) => {
-            const selected = tab.label === active;
-            return (
-              <button
+        <div className="relative -mt-14 w-[min(100%,34rem)] rounded-full bg-white p-2 shadow-sm sm:mt-0 sm:rounded-t-none sm:rounded-b-3xl sm:p-3">
+          <Marquee gap={8} duration={40} fade={28}>
+            {showcaseTabs.map((tab) => (
+              <span
                 key={tab.label}
-                type="button"
-                aria-pressed={selected}
-                onClick={() => setActive(tab.label)}
                 className={cn(
-                  "rounded-3xl px-4 py-1.5 text-xs font-medium text-black transition-colors sm:px-5 sm:py-2 sm:text-sm",
-                  selected ? "bg-neutral-200" : "hover:bg-[#F7F7F7]",
+                  buttonVariants({ variant: "secondary" }),
+                  "rounded-3xl text-neutral-700",
                 )}
               >
                 {tab.label}
-              </button>
-            );
-          })}
+              </span>
+            ))}
+          </Marquee>
           <ConcaveMerge side="left" />
           <ConcaveMerge side="right" />
         </div>
