@@ -139,9 +139,9 @@ export function HeroSection() {
           transition={{
             delay: 0.9,
           }}
-          className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+          className="flex flex-row items-center justify-center gap-3"
         >
-          <Button asChild size="lg" className="w-full rounded-full sm:w-auto">
+          <Button asChild size="lg" className="rounded-full">
             <Link href={hero.primaryCta.href}>
               <IconPhone className="size-4" aria-hidden="true" />
               {hero.primaryCta.label}
@@ -151,7 +151,7 @@ export function HeroSection() {
             asChild
             size="lg"
             variant={"secondary"}
-            className="w-full rounded-full sm:w-auto group"
+            className="rounded-full group"
           >
             <Link href={hero.secondaryCta.href}>
               {hero.secondaryCta.label}
