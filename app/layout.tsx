@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "EmberBuild - Web Design & Development Agency in India",
+  title: "EmberBuild - Web Design & Development Agency in Mumbai",
   description:
-    "EmberBuild designs and develops modern, high-performing websites for businesses and growing brands. Build a stronger online presence with us.",
+    "EmberBuild designs and develops modern, high-performing websites for businesses and growing brands in Mumbai and across India. Build a stronger online presence with us.",
   alternates: {
     canonical: "/",
   },
