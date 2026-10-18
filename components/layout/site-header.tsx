@@ -8,11 +8,16 @@ import { Wordmark } from "@/components/layout/wordmark";
 import { Button } from "@/components/ui/button";
 import { headerCta, navLinks } from "@/constants/nav";
 import { cn } from "@/lib/utils";
-import { darkSurface } from "@/lib/styles";
+import { elevatedSurface } from "@/lib/styles";
+import { useElementSize } from "@/hooks/use-element-size";
 import { useMediaQuery } from "react-responsive";
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+  const { ref: menuRef, size: menuSize } = useElementSize<HTMLDivElement>();
+
+  const expanded = open && isTabletOrMobile;
 
   useEffect(() => {
     if (!open) return;
@@ -39,12 +44,11 @@ export function SiteHeader() {
       />
       <nav
         aria-label="Primary"
+        style={expanded ? { marginBottom: -menuSize.height } : undefined}
         className={cn(
-          "pointer-events-auto relative mx-auto flex w-full max-w-150 flex-col text-white",
-          darkSurface,
-          open && isTabletOrMobile
-            ? "rounded-t-3xl border-none"
-            : "rounded-full",
+          "pointer-events-auto relative mx-auto flex w-full max-w-150 flex-col bg-[#0A0A0A] text-white before:absolute before:inset-0 before:rounded-[inherit] before:bg-linear-to-b before:from-transparent before:via-transparent before:to-[#ffffff21] before:pointer-events-none",
+          elevatedSurface,
+          expanded ? "rounded-3xl" : "rounded-full",
         )}
       >
         <div className="flex items-center justify-between gap-4 py-1.5 sm:py-2.5 pr-3 pl-5">
@@ -69,7 +73,7 @@ export function SiteHeader() {
             <Button
               asChild
               size="sm"
-              className="rounded-full bg-primary text-white hover:bg-primary/90 px-4 h-8.5 font-normal"
+              className="rounded-full bg-primary/95 text-white hover:bg-primary/90 px-4 h-9 font-normal"
             >
               <Link href={headerCta.href}>{headerCta.label}</Link>
             </Button>
@@ -93,10 +97,8 @@ export function SiteHeader() {
 
         <div
           id="mobile-nav"
-          className={cn(
-            "absolute left-0 top-full w-full overflow-hidden rounded-b-3xl bg-black md:hidden border-x border-[color-mix(in_oklch,#fff,black_80%)]",
-            open ? "block " : "hidden",
-          )}
+          ref={menuRef}
+          className={cn("md:hidden", expanded ? "block" : "hidden")}
         >
           <ul className="flex flex-col gap-1 px-3 pb-3">
             {navLinks.map((link) => (
@@ -104,7 +106,7 @@ export function SiteHeader() {
                 <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-2xl px-3 py-3 text-base font-medium text-[#ACACAC] transition-colors hover:bg-white/10 hover:text-white"
+                  className="block px-2 py-3 text-sm font-medium text-[#ACACAC] transition-colors hover:bg-neutral-900/30 hover:text-white"
                 >
                   {link.label}
                 </Link>
