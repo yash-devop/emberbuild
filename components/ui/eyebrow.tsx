@@ -25,9 +25,11 @@ export function Eyebrow({
       variants={shouldAnimate ? blurScaleVariants() : blurScaleReducedVariants}
       initial={shouldAnimate ? "hidden" : "visible"}
       animate="visible"
-      transition={shouldAnimate ? blurScaleTransition({ delay: 1.5 }) : { duration: 0 }}
+      transition={
+        shouldAnimate ? blurScaleTransition({ delay: 1.5 }) : { duration: 0 }
+      }
       className={cn(
-        "inline-flex items-center rounded-full bg-eyebrow px-3 pt-px h-6 text-[11px] leading-none tracking-[-0.5px] text-black uppercase font-medium font-mono border border-[#7C7C7C] select-none cursor-default w-fit will-change-transform",
+        "inline-flex items-center rounded-full bg-eyebrow px-3 pt-px h-6 text-[11px] leading-none text-black uppercase font-medium font-mono border border-[#7C7C7C] select-none cursor-default w-fit will-change-transform",
         className,
       )}
       {...props}
