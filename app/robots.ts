@@ -1,8 +1,8 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
-import { site } from "@/constants/site"
+import { site } from "@/constants/site";
 
-export const dynamic = "force-static"
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -11,6 +11,5 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: `${site.url}/sitemap.xml`,
-    host: site.url,
-  }
+  };
 }
