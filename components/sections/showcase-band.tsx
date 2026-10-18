@@ -144,8 +144,8 @@ export function ShowcaseBand() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-3 size-10 border-0 bg-white text-[#202020] shadow-sm hover:bg-white hover:text-[#202020] sm:left-5 sm:size-[54px]" />
-          <CarouselNext className="right-3 size-10 border-0 bg-white text-[#202020] shadow-sm hover:bg-white hover:text-[#202020] sm:right-5 sm:size-[54px]" />
+          <CarouselPrevious className="left-3 size-10 border-0 bg-white text-[#202020] shadow-[inset_0_0_0_1px_#bdbdbd,inset_0_3px_3px_0_#88888856,inset_0_-3px_3px_0_#88888856] hover:bg-white hover:text-[#202020] sm:right-5 sm:size-12" />
+          <CarouselNext className="right-3 size-10 border-0 bg-white text-[#202020] shadow-[inset_0_0_0_1px_#bdbdbd,inset_0_3px_3px_0_#88888856,inset_0_-3px_3px_0_#88888856] hover:bg-white hover:text-[#202020] sm:right-5 sm:size-12" />
         </Carousel>
 
         <Carousel
@@ -153,7 +153,7 @@ export function ShowcaseBand() {
           opts={{ align: "center", dragFree: true, containScroll: "keepSnaps" }}
           className="mt-6 w-full max-w-[1400px]"
         >
-          <CarouselContent className="items-center">
+          <CarouselContent className="items-center justify-center-safe">
             {showcaseWorks.map((work, index) => (
               <CarouselItem key={work.src} className="basis-auto">
                 <button
