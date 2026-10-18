@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: "EmberBuild - Web Design & Development Agency in Mumbai",
   description:
-    "EmberBuild designs and develops modern, high-performing websites for businesses and growing brands in Mumbai and across India. Build a stronger online presence with us.",
+    "EmberBuild designs modern, high-performing websites for growing businesses in Mumbai and across India. Build a stronger online presence.",
   alternates: {
     canonical: "/",
   },
