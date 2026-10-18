@@ -136,10 +136,7 @@ function Carousel({
   );
 }
 
-function CarouselContent({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -186,7 +183,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full cursor-pointer",
         orientation === "horizontal"
           ? "-left-12 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -196,7 +193,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <IconChevronLeft className="size-4" />
+      <IconChevronLeft className="size-5" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -215,7 +212,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full cursor-pointer",
         orientation === "horizontal"
           ? "-right-12 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -225,7 +222,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <IconChevronRight className="size-4" />
+      <IconChevronRight className="size-5" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
