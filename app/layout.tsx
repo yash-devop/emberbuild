@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
-import { site } from "@/constants/site";
+import { site, socialPreview } from "@/constants/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +22,21 @@ export const metadata: Metadata = {
     "EmberBuild designs and develops modern, high-performing websites for businesses and growing brands in Mumbai and across India. Build a stronger online presence with us.",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: site.url,
+    siteName: site.name,
+    locale: "en_IN",
+    title: socialPreview.title,
+    description: socialPreview.description,
+    images: [socialPreview.image],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: socialPreview.title,
+    description: socialPreview.description,
+    images: [socialPreview.image.url],
   },
   verification: {
     other: {

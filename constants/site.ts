@@ -13,6 +13,19 @@ export const site = {
   emails: ["yashkamble.dev@gmail.com", "baile.aditi@gmail.com"],
 } as const
 
+export const socialPreview = {
+  title: "EmberBuild — Premium Websites Built for Growth",
+  description:
+    "We design and build premium, high-converting websites for businesses ready to grow online.",
+  image: {
+    url: "/images/open-graph/variant-1.webp",
+    width: 1200,
+    height: 630,
+    type: "image/webp",
+    alt: "EmberBuild — premium websites built for growth",
+  },
+} as const
+
 export type SocialKey = "linkedin"
 
 export type Social = {
