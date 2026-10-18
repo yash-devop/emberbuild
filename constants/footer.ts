@@ -1,4 +1,4 @@
-import { whatsapp } from "@/constants/site";
+import { phoneNumbers, whatsapp } from "@/constants/site";
 
 export type SocialIcon = "linkedin" | "x";
 
@@ -14,9 +14,16 @@ export type FooterLink = {
   external?: boolean;
 };
 
+export type FooterLinkGroup = {
+  links: FooterLink[];
+  separator: string;
+};
+
+export type FooterLinkItem = FooterLink | FooterLinkGroup;
+
 export type FooterColumn = {
   title: string;
-  links: FooterLink[];
+  links: FooterLinkItem[];
 };
 
 export const footer = {
@@ -45,7 +52,13 @@ export const footer = {
   contact: {
     title: "Let’s Talk",
     links: [
-      { label: "Start a Project ", href: "#contact" },
+      {
+        separator: " / ",
+        links: phoneNumbers.map((number) => ({
+          label: number,
+          href: `tel:${number}`,
+        })),
+      },
       {
         label: "Chat on Whatsapp",
         href: whatsapp.href,

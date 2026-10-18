@@ -1,9 +1,13 @@
+export const phoneNumbers = ["+917715097298", "+917021386010"] as const
+
 export const site = {
   name: "Emberbuild",
   wordmark: "emberbuild.",
   url: "https://emberbuild.in",
   portfolioUrl: "https://portfolio.emberbuild.in",
   bookCallUrl: "https://calendar.app.google/M8EsugWAk2xb3CSU9",
+  phone: phoneNumbers[0],
+  phoneNumbers,
   description:
     "Emberbuild is a design and development studio building thoughtful, high-performing websites for growing businesses.",
   emails: ["yashkamble.dev@gmail.com", "baile.aditi@gmail.com"],
@@ -24,14 +28,13 @@ export const socials: Social[] = [
 const whatsappMessage =
   "Hi EmberBuild! I'm interested in a website for my business. I'd like to discuss my requirements and pricing."
 
-const whatsappPhone = "917715097298"
-
 export function whatsappLink(message: string) {
-  return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`
+  const phone = site.phone.replace(/[^0-9]/g, "")
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 }
 
 export const whatsapp = {
-  phone: whatsappPhone,
+  phone: site.phone,
   message: whatsappMessage,
   href: whatsappLink(whatsappMessage),
 } as const

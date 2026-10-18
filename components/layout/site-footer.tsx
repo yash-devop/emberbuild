@@ -1,11 +1,15 @@
-import { Suspense } from "react";
+import { Fragment, Suspense } from "react";
 import Link from "next/link";
 import { io } from "next/cache";
 import { IconBrandLinkedin, IconBrandX, type Icon } from "@tabler/icons-react";
 
 import { Container } from "@/components/layout/container";
 import { Wordmark } from "@/components/layout/wordmark";
-import { footer, type FooterLink, type SocialIcon } from "@/constants/footer";
+import {
+  footer,
+  type FooterLinkItem,
+  type SocialIcon,
+} from "@/constants/footer";
 
 const socialIcons: Record<SocialIcon, Icon> = {
   linkedin: IconBrandLinkedin,
@@ -23,24 +27,43 @@ function FooterColumn({
   links,
 }: {
   title: string;
-  links: readonly FooterLink[];
+  links: readonly FooterLinkItem[];
 }) {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-sm font-medium text-black">{title}</h2>
       <ul className="flex flex-col gap-3">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noreferrer" : undefined}
-              className="text-sm text-[#6A6A6A] transition-colors hover:text-neutral-800"
+        {links.map((link) =>
+          "links" in link ? (
+            <li
+              key={link.links.map((item) => item.href).join("|")}
+              className="whitespace-nowrap text-sm text-[#6A6A6A]"
             >
-              {link.label}
-            </Link>
-          </li>
-        ))}
+              {link.links.map((item, index) => (
+                <Fragment key={item.href}>
+                  {index > 0 ? link.separator : null}
+                  <Link
+                    href={item.href}
+                    className="transition-colors hover:text-neutral-800"
+                  >
+                    {item.label}
+                  </Link>
+                </Fragment>
+              ))}
+            </li>
+          ) : (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+                className="text-sm text-[#6A6A6A] transition-colors hover:text-neutral-800"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );
