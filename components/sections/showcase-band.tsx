@@ -131,7 +131,7 @@ export function ShowcaseBand() {
         </div>
 
         <div
-          className="relative mt-14 max-w-[1400px] aspect-video w-full overflow-hidden rounded-2xl sm:mt-16 lg:aspect-[16/9] xl:h-[720px]"
+          className="relative mt-14 max-w-[1400px] aspect-[4/3] w-full overflow-hidden rounded-2xl sm:aspect-video sm:mt-16 lg:aspect-[16/9] xl:h-[720px]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
@@ -151,7 +151,7 @@ export function ShowcaseBand() {
                 alt={work.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, min(1400px, 100vw)"
-                className="object-contain p-4 sm:p-8"
+                className="object-contain"
                 priority={index === 0}
               />
             </motion.div>
