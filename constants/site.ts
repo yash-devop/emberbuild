@@ -3,6 +3,7 @@ export const site = {
   wordmark: "emberbuild.",
   url: "https://emberbuild.in",
   portfolioUrl: "https://portfolio.emberbuild.in",
+  bookCallUrl: "https://calendar.app.google/M8EsugWAk2xb3CSU9",
   description:
     "Emberbuild is a design and development studio building thoughtful, high-performing websites for growing businesses.",
   emails: ["yashkamble.dev@gmail.com", "baile.aditi@gmail.com"],

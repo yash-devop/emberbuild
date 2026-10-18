@@ -1,3 +1,5 @@
+import { site } from "@/constants/site";
+
 export const hero = {
   eyebrow: "Strategy meets craft",
   heading: {
@@ -9,7 +11,7 @@ export const hero = {
     "Thoughtfully designed, professionally built websites for growing businesses. Work directly with the person building your site, with clear deliverables and website packages starting at ₹20,000.",
   primaryCta: {
     label: "Book a call",
-    href: "#contact",
+    href: site.bookCallUrl,
   },
   secondaryCta: {
     label: "Explore our work",

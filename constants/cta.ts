@@ -1,3 +1,5 @@
+import { site } from "@/constants/site";
+
 export type CtaActionTone = "solid" | "outline";
 
 export type CtaActionIcon = "calendar";
@@ -15,7 +17,7 @@ export const cta = {
   actions: [
     {
       label: "Book a meeting with us ",
-      href: "#contact",
+      href: site.bookCallUrl,
       tone: "solid",
       icon: "calendar",
       external: true,

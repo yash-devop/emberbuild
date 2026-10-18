@@ -1,3 +1,5 @@
+import { site } from "@/constants/site";
+
 export const devices = {
   eyebrow: "Our work",
   heading: {
@@ -12,7 +14,7 @@ export const devices = {
       "of your users will visit on mobile first. We design & build for that reality.",
     cta: {
       label: "Get a project estimate",
-      href: "#contact",
+      href: site.bookCallUrl,
     },
   },
 } as const

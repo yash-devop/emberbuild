@@ -1,3 +1,5 @@
+import { site } from "@/constants/site";
+
 export type NavLink = {
   label: string
   href: string
@@ -11,5 +13,5 @@ export const navLinks: NavLink[] = [
 
 export const headerCta = {
   label: "Book a call",
-  href: "#contact",
+  href: site.bookCallUrl,
 } as const
