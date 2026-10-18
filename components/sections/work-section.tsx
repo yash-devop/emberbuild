@@ -1,8 +1,6 @@
-import Link from "next/link";
-
 import { Container } from "@/components/layout/container";
-import { PortfolioPreviewCard } from "@/components/sections/portfolio-preview-card";
 import { HighlightHeading } from "@/components/sections/highlight-heading";
+import { PortfolioPreviewCard } from "@/components/sections/portfolio-preview-card";
 import { work } from "@/constants/work";
 
 export function WorkSection() {
@@ -15,14 +13,14 @@ export function WorkSection() {
             lead={work.heading.lead}
             highlight={work.heading.highlight}
           />
-          <Link
+          {/* <Link
             href={work.cta.href}
             target="_blank"
             rel="noreferrer"
             className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
             {work.cta.label} →
-          </Link>
+          </Link> */}
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

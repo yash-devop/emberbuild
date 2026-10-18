@@ -1,14 +1,13 @@
-import { SiteFooter } from "@/components/layout/site-footer"
-import { SiteHeader } from "@/components/layout/site-header"
-import { CapabilitiesSection } from "@/components/sections/capabilities-section"
-import { CtaSection } from "@/components/sections/cta-section"
-import { DevicesSection } from "@/components/sections/devices-section"
-import { FaqSection } from "@/components/sections/faq-section"
-import { HeroSection } from "@/components/sections/hero-section"
-import { PricingSection } from "@/components/sections/pricing-section"
-import { ProcessSection } from "@/components/sections/process-section"
-import { ShowcaseBand } from "@/components/sections/showcase-band"
-import { WorkSection } from "@/components/sections/work-section"
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { CapabilitiesSection } from "@/components/sections/capabilities-section";
+import { CtaSection } from "@/components/sections/cta-section";
+import { DevicesSection } from "@/components/sections/devices-section";
+import { FaqSection } from "@/components/sections/faq-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { PricingSection } from "@/components/sections/pricing-section";
+import { ProcessSection } from "@/components/sections/process-section";
+import { ShowcaseBand } from "@/components/sections/showcase-band";
 
 export default function Home() {
   return (
@@ -18,7 +17,7 @@ export default function Home() {
         <HeroSection />
         <ShowcaseBand />
         <ProcessSection />
-        <WorkSection />
+        {/* <WorkSection /> */}
         <CapabilitiesSection />
         <DevicesSection />
         <PricingSection />
@@ -27,5 +26,5 @@ export default function Home() {
       </main>
       <SiteFooter />
     </div>
-  )
+  );
 }

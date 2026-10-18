@@ -1,8 +1,8 @@
 export type WorkProject = {
-  title: string
-  visit: string
-  poweredBy: string
-}
+  title: string;
+  visit: string;
+  poweredBy: string;
+};
 
 export const work = {
   eyebrow: "Our work",
@@ -31,4 +31,4 @@ export const work = {
       poweredBy: "Powered By: emberbuild.in",
     },
   ] satisfies WorkProject[],
-} as const
+} as const;
