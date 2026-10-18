@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { showcaseTabs, showcaseWorks } from "@/constants/showcase";
 
 const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
-const SLIDE_INTERVAL_MS = 3300;
+const SLIDE_INTERVAL_MS = 1700;
 
 const slideVariants: Variants = {
   initial: {
