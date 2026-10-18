@@ -92,8 +92,9 @@ export function CtaSection() {
                         asChild
                         size="lg"
                         className={cn(
-                          "w-fit rounded-full sm:w-auto ",
+                          "w-fit rounded-full sm:w-auto bg-[#0A0A0A]",
                           actionToneClasses[action.tone],
+                          " hover:bg-[#0A0A0A] hover:bg-[#1e1e1e]",
                         )}
                       >
                         <Link
