@@ -150,7 +150,7 @@ export function ShowcaseBand() {
                 src={work.src}
                 alt={work.alt}
                 fill
-                sizes="(min-width: 1400px) 1400px, 100vw"
+                sizes="(max-width: 768px) 100vw, min(1400px, 100vw)"
                 className="object-contain p-4 sm:p-8"
                 priority={index === 0}
               />
