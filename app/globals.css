@@ -74,7 +74,8 @@
   --ring: #8570ff;
   --black: #000000;
   --charcoal: #3f3f3f;
-  --eyebrow: #9fef54;
+  /* --eyebrow: #9fef54; */
+  --eyebrow: #55ffa7;
   --description: #727272;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
