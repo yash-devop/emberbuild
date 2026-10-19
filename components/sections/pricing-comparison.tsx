@@ -9,18 +9,19 @@ import {
 } from "@/components/ui/table";
 import { CheckBadge } from "@/components/ui/check-badge";
 import { pricing, type ComparisonCell } from "@/constants/pricing";
+import { IconX } from "@tabler/icons-react";
 
 function ComparisonValue({ value }: { value: ComparisonCell }) {
   if (value === true) {
     return <CheckBadge variant="table" size="sm" className="mx-auto" />;
   }
+  if (value === "-") {
+    return <IconX className="mx-auto text-neutral-600" size={18} />;
+  }
 
   return (
     <span
-      className={cn(
-        "text-base",
-        value === "-" ? "text-[#181818]" : "text-black",
-      )}
+      className={cn("text-sm", value === "-" ? "text-[#181818]" : "text-black")}
     >
       {value}
     </span>
