@@ -28,6 +28,10 @@ export type ShowcaseWork = {
 
 export const showcaseWorks: ShowcaseWork[] = [
   {
+    src: "/images/work/boucherie-showcase.webp",
+    alt: "Boucherie website design showcase",
+  },
+  {
     src: "/images/work/ai-template-showcase.webp",
     alt: "AI Template website design showcase",
   },
