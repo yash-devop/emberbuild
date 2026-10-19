@@ -151,11 +151,12 @@ export function ShowcaseBand() {
         <Carousel
           setApi={setThumbApi}
           opts={{ align: "center", dragFree: true, containScroll: "keepSnaps" }}
-          className="mt-6 w-full max-w-[1400px]"
+          className="mt-6 w-full max-w-[1400px] 
+          "
         >
           <CarouselContent className="items-center justify-center-safe">
             {showcaseWorks.map((work, index) => (
-              <CarouselItem key={work.src} className="basis-auto">
+              <CarouselItem key={work.src} className="basis-auto pt-3 pb-2">
                 <button
                   type="button"
                   onClick={() => api?.scrollTo(index)}
@@ -164,8 +165,8 @@ export function ShowcaseBand() {
                   className={cn(
                     "relative h-[58px] w-[94px] overflow-hidden rounded-lg transition-all duration-300 ease-out motion-reduce:transition-none sm:h-[76px] sm:w-[124px]",
                     index === selected
-                      ? "ring-2 ring-white scale-105"
-                      : "opacity-60 hover:opacity-100",
+                      ? "ring-2 ring-white scale-110"
+                      : "opacity-60 hover:opacity-100 scale-95",
                   )}
                 >
                   <Image
