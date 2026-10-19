@@ -3,10 +3,11 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Container } from "@/components/layout/container"
-import { SectionHeading } from "@/components/sections/section-heading"
-import { faq } from "@/constants/faq"
+} from "@/components/ui/accordion";
+import { Container } from "@/components/layout/container";
+import { SectionHeading } from "@/components/sections/section-heading";
+import { faq } from "@/constants/faq";
+import { Button } from "../ui/button";
 
 export function FaqSection() {
   return (
@@ -36,6 +37,16 @@ export function FaqSection() {
           ))}
         </Accordion>
       </Container>
+      <Container className="w-full flex flex-col items-center justify-center mt-28 gap-1.5">
+        <span className="font-medium">Still have questions?</span>
+        <span className="text-description pb-4">
+          Reach out anytime, or book a call and we’ll walk you through
+          everything
+        </span>
+        <Button className="rounded-full cursor-pointer">
+          Book a call with us
+        </Button>
+      </Container>
     </section>
-  )
+  );
 }
