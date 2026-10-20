@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   Accordion,
   AccordionContent,
@@ -7,6 +9,7 @@ import {
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { faq } from "@/constants/faq";
+import { site } from "@/constants/site";
 import { Button } from "../ui/button";
 
 export function FaqSection() {
@@ -43,8 +46,8 @@ export function FaqSection() {
           Reach out anytime, or book a call and we’ll walk you through
           everything
         </span>
-        <Button className="rounded-full cursor-pointer">
-          Book a call with us
+        <Button asChild className="rounded-full cursor-pointer">
+          <Link href={site.bookCallUrl}>Book a call with us</Link>
         </Button>
       </Container>
     </section>
