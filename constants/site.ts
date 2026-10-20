@@ -9,7 +9,7 @@ export const site = {
   phone: phoneNumbers[0],
   phoneNumbers,
   description:
-    "Emberbuild is a design and development studio building thoughtful, high-performing websites for growing businesses.",
+    "Emberbuild is a Mumbai-based design and development studio building thoughtful, high-performing websites for growing businesses.",
   emails: ["yashkamble.dev@gmail.com", "baile.aditi@gmail.com"],
 } as const
 
@@ -18,10 +18,10 @@ export const socialPreview = {
   description:
     "We design and build premium, high-converting websites for businesses ready to grow online.",
   image: {
-    url: "/images/open-graph/variant-1.webp",
+    url: "/images/open-graph/variant-1.png",
     width: 1200,
     height: 630,
-    type: "image/webp",
+    type: "image/png",
     alt: "EmberBuild — premium websites built for growth",
   },
 } as const

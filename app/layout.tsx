@@ -36,7 +36,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: socialPreview.title,
     description: socialPreview.description,
-    images: [socialPreview.image.url],
+    images: [
+      {
+        url: socialPreview.image.url,
+        alt: socialPreview.image.alt,
+      },
+    ],
   },
   verification: {
     other: {
