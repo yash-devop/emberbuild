@@ -28,7 +28,8 @@ export type FooterColumn = {
 
 export const footer = {
   wordmark: "emberbuild.",
-  tagline: "Web Design & Development Agency in India",
+  tagline:
+    "Independent web design & development studio based in Mumbai, India.",
   copyright: "Emberbuild. All rights reserved.",
   socials: [
     { label: "X", href: "https://twitter.com/yash_devop/", icon: "x" },
