@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import { useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
@@ -131,15 +133,38 @@ export function ShowcaseBand() {
           <CarouselContent className="ml-0 h-full">
             {showcaseWorks.map((work, index) => (
               <CarouselItem key={work.src} className="h-full pl-0">
-                <div className="relative h-full w-full p-5 sm:p-10 lg:p-14">
+                <div className="group/slide relative h-full w-full overflow-hidden p-5 sm:p-10 lg:p-14">
                   <Image
                     src={work.src}
                     alt={work.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, min(1400px, 100vw)"
-                    className="object-contain"
+                    className="object-contain transition-transform duration-700 ease-out group-hover/slide:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover/slide:scale-100"
                     priority={index === 0}
                   />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/85 via-black/30 to-transparent sm:h-48"
+                  />
+                  <div className="pointer-events-none absolute inset-x-5 bottom-5 flex items-end justify-between gap-4 sm:inset-x-10 sm:bottom-8 lg:inset-x-14 lg:bottom-10">
+                    <h3 className="min-w-0 truncate text-xl font-semibold tracking-title text-white sm:text-2xl lg:text-3xl">
+                      {work.title}
+                    </h3>
+                    {work.href ? (
+                      <Link
+                        href={work.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Visit ${work.title}`}
+                        className="group/link pointer-events-auto inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_14px_30px_-10px_rgba(0,0,0,0.65)] outline-none transition-[transform,background-color,color] duration-300 ease-out hover:scale-105 hover:bg-primary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none motion-reduce:hover:scale-100 sm:size-12"
+                      >
+                        <IconArrowUpRight
+                          aria-hidden="true"
+                          className="size-5 transition-transform duration-300 ease-out group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 motion-reduce:transition-none"
+                        />
+                      </Link>
+                    ) : null}
+                  </div>
                 </div>
               </CarouselItem>
             ))}
@@ -160,7 +185,7 @@ export function ShowcaseBand() {
                 <button
                   type="button"
                   onClick={() => api?.scrollTo(index)}
-                  aria-label={`Show ${work.alt}`}
+                  aria-label={`Show ${work.title}`}
                   aria-current={index === selected ? "true" : undefined}
                   className={cn(
                     "relative h-[58px] w-[94px] overflow-hidden rounded-lg transition-all duration-300 ease-out motion-reduce:transition-none sm:h-[76px] sm:w-[124px]",
